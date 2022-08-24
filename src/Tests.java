@@ -1,7 +1,15 @@
 public class Tests {
     public static void main (String [] args){
-        System.out.println(test_put_and_get() && test_remove() && test_get_warmest() && test_300_circular_gets());
-
+        if(test_put_and_get() && test_remove() && test_get_warmest() && test_300_circular_gets())
+            System.out.println("all tests are good");
+        else if (!test_put_and_get())
+            System.out.println("fails test_put_and_get");
+        else if (!test_remove())
+            System.out.println("fails test_remove");
+        else if (!test_get_warmest())
+            System.out.println("failed test_get_earmest");
+        else
+            System.out.println("failed test_300_circular_gets");
     }
 
     public static boolean test_put_and_get(){
@@ -37,7 +45,7 @@ public class Tests {
         boolean bol2= warmest.getWarmest().equals("warmest");
         warmest.get(1);
         boolean bol3= warmest.getWarmest().equals("hello");
-        warmest.remove(1);
+        warmest.remove(1); //remove hello
         boolean bol4= warmest.getWarmest().equals("warmest");
         warmest.remove(2);
         boolean bol5= warmest.getWarmest()==null;
@@ -60,7 +68,9 @@ public class Tests {
         boolean bol3= warmest.getWarmest().equals("1");
         warmest.remove(1);
         boolean bol4=warmest.getWarmest()==null;
-        boolean bol5= warmest.getWarmList()=="[]";
+        boolean bol5= warmest.getWarmList()=="";
         return bol1 && bol2 && bol3 && bol4 && bol5;
+
+
     }
 }
